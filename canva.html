@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta hhtp-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas card</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="card1">
+        <canvas id="cnv1" width="400" height="400">Ваш браузер не розуміє канву</canvas>
+        <input type="color" id="color">
+    </div>
+
+    <script>
+        const canvas = document.getElementById('cnv1');
+        const ctx = canvas.getContext('2d');
+        let color = "";
+        ctx.rect(0, 0, canvas.width, canvas.height);
+
+        const getColor = document.querySelector("#color");
+        getColor.addEventListener("click", function () {
+            document.getElementById('color').oninput = function() {
+                color = this.value;
+                ctx.fillStyle = color;
+                ctx.fill();
+                var img = new Image();
+                img.src = 'testImg.png';
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
+        });
+    </script>
+</body>
+</html>
